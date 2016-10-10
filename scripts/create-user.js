@@ -2,8 +2,6 @@ var prompt = require('prompt');
 var bcrypt = require('bcrypt');
 var db = require('./database.js');
 
-
-
 // input data schema
 var schema = {
 	properties: {

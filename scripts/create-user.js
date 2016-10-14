@@ -60,7 +60,7 @@ prompt.get(schema, function (err, result) {
 
 	// bcrypt the password
 	var rounds = 1;
-	var salt = bcrypt.genSaltSync(10);
+	// var salt = bcrypt.genSaltSync(10);
 	bcrypt.genSalt(rounds, function(err, salt) {
 		bcrypt.hash(result.password, salt, function(err, hash) {
 			// store new user in db

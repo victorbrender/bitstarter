@@ -1,0 +1,33 @@
+{
+  "projects" : [
+    {
+      "name" : "Project1",
+      "description" : "Description for Project1.",
+      "goal" : 100
+    },
+    {
+      "name" : "Project2",
+      "description" : "Description for Project2.",
+      "goal" : 200
+    },
+    {
+      "name" : "Project3",
+      "description" : "Description for Project3.",
+      "goal" : 300
+    }
+  ],
+  "addresses" : [
+    {
+      "project_id" : 1,
+      "token" : "aaaaaaaaaaaa"
+    },
+    {
+      "project_id" : 2,
+      "token" : "bbbbbbbbbbbb"
+    },
+    {
+      "project_id" : 3,
+      "token" : "cccccccccccc"
+    }
+  ] 
+}

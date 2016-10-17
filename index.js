@@ -14,6 +14,7 @@ app.use(serveStatic(__dirname + '/public'));
 
 app.config = require('./config');
 require('./controllers')(app);
+require('./controllers/admin')(app);
 
 app.listen(3000, function () {
 	console.log('Example app listening on port 3000!');

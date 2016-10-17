@@ -27,7 +27,7 @@ module.exports.knex.schema.createTableIfNotExists('projects', function(table) {
 }).catch(console.log);
 
 // create addresses table
-module.exports.knex.schema.createTableIfNotExists('address', function(table) {
+module.exports.knex.schema.createTableIfNotExists('addresses', function(table) {
 	table.increments('id');
 	table.integer('project_id');
 	table.string('token');

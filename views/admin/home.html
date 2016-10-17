@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Projects Index</title>
+</head>
+<body>
+
+  <h1>Projects</h1>
+
+  {{#if projects}}
+  <p>The following is a list of all the projects.</p>
+  <ol>
+    {{#each projects}}
+    <li>
+      <ul>
+        <li>
+          <b>{{name}}</b><br>
+        </li>
+        <li>
+          <span>{{description}}</span>    
+        </li>
+        <li>
+          <span>{{goal}}</span>
+        </li>
+      </ul>
+    </li>
+    {{/each}}
+  </ol>
+  {{else}}
+  <p>No projects.</p>
+  {{/if}}
+
+</body>
+</html>

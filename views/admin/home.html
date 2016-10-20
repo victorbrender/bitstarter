@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Projects Index</title>
+</head>
+<body>
+
+  <h1>Projects</h1>
+
+  <div>
+    <p>Add new project</p>
+    <div>
+      <form id="default-form" action="/projects" method="POST">
+        <input type="text" name="name" placeholder="Name...">
+        <input type="text" name="description" placeholder="Description...">
+        <input type="numeric" name="goal" placeholder="Goal...">
+        <input type="submit" value="Add">
+      </form>
+    </div>
+  </div>
+
+  <br>
+
+  <div>
+    {{#if projects}}
+    <p>The following is a list of all the projects.</p>
+    <ol>
+      {{#each projects}}
+      <li>
+        <ul>
+          <li>
+            <b>{{name}}</b><br>
+          </li>
+          <li>
+            <span>{{description}}</span>    
+          </li>
+          <li>
+            <span>{{goal}}</span>
+          </li>
+          <li>
+            <form method="POST" action="/projects" enctype="application/x-www-form-urlencoded">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit">Delete project</button>
+            </form>
+          </li>
+        </ul>
+      </li>
+      {{/each}}
+    </ol>
+    {{else}}
+    <p>No projects.</p>
+    {{/if}}
+  </div>
+
+</body>
+</html>

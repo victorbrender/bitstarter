@@ -6,49 +6,46 @@
 </head>
 
 <body>
-	{{#if username}}
-		<h1>Welcome to Bitstarter <strong>{{username}}</strong>! </h1>
-	{{/if}}
+	<header>
+		<h1>
+			Welcome to Bitstarter
+			{{#if username}}
+				<strong>{{username}}</strong>
+			{{/if}}
+			!
+		</h1>
 
-	{{#unless username}}
-	<a href="/login">Login</a>
-	{{/unless}}
-	{{#if username}}
-	<a href="/logout">Logout</a>
-	{{/if}}
+		<aside>
+			{{#if username}}
+				<a href="/logout">Logout</a>
+			{{else}}
+				<a href="/login">Login</a>
+			{{/if}}
+		</aside>
 
-	<h1>Bitstarter homepage</h1>
+		<h2>Bitstarter homepage</h2>
+	</header>
 
-	<h2>Projects Index</h2>
-
-	{{#if projects}}
-		<p>The following is a list of all the existing projects.</p>
-		<ol>
-			{{#each projects}}
-			<li>
-				<ul class="project">
-					<li class='project-name'>
-						<span>{{name}}</span>
-					</li>
-					<li>
-						<span>Description: </span>
-						<span>{{description}}</span>    
-					</li>
-					<li>
-						<span>Goal: </span>
-						<span>{{goal_amount}}</span>
-					</li>
-					<li>
-						<span>Address: </span>
-						<span>{{token}}</span>
-					</li>
-				</ul>
-			</li>
-			{{/each}}
-		</ol>
+	<section>
+		{{#if projects}}
+			<header>
+				<h1>Projects Index</h1>
+				<h2>The following is a list of all the existing projects.</h2>
+			</header>
+			<ol>
+				{{#each projects}}
+				<li>
+					<p>Name: {{name}}</p>
+					<p>Description: {{description}}</p>
+					<p>Goal: {{goal_amount}}</p>
+					<p>Address: {{token}}</p>
+				</li>
+				{{/each}}
+			</ol>
 	{{else}}
 		<p>No projects available.</p>
 	{{/if}}
+	</section>
 
 </body>
 </html>

@@ -45,3 +45,18 @@ Both have pretty straight forward setup guides so getting them working shouldn't
 5. Run `npm start`
 
 That's it!
+
+
+## Testing environment
+
+1. For testing you have to create a database for testing. Sample SQL statement to do this:
+
+```sql
+CREATE USER 'bitstarterTest'@'localhost' IDENTIFIED BY  'password';
+
+GRANT USAGE ON * . * TO  'bitstarterTest'@'localhost' IDENTIFIED BY  'password' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
+
+GRANT ALL PRIVILEGES ON  `bitstarterTest` . * TO  'bitstarterTest'@'localhost';
+```
+
+2. Open a terminal and run `grunt`

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Learn-by-doing/bitstarter#readme",
   "dependencies": {
+    "async": "^2.1.4",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "chai": "^3.5.0",
@@ -34,9 +35,11 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "chai-http": "^3.0.0",
     "eslint": "^3.7.1",
     "grunt": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-env": "^0.4.4",
     "grunt-eslint": "^19.0.0",
     "grunt-mocha-test": "^0.13.2",
     "gruntify-eslint": "^3.1.0"

@@ -2,6 +2,8 @@
 
 Crowd funding for goals and projects with Bitcoin.
 
+[![Build Status](https://travis-ci.org/Learn-by-doing/bitstarter.svg?branch=master)](https://travis-ci.org/Learn-by-doing/bitstarter) [![Status of Dependencies](https://david-dm.org/Learn-by-doing/bitstarter.svg)](https://david-dm.org/Learn-by-doing/bitstarter)
+
 * Front-facing web site
   * List of all goals/projects
 * Admin interface:
@@ -34,8 +36,27 @@ Both have pretty straight forward setup guides so getting them working shouldn't
   GRANT USAGE ON * . * TO  'bitstarter'@'localhost' IDENTIFIED BY  'password' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
 
   GRANT ALL PRIVILEGES ON  `bitstarter` . * TO  'bitstarter'@'localhost';
+
+  CREATE DATABASE bitstarter
   ```
 
-4. Run `npm start`
+4. Create the first user: In your command line, go to the `/scripts` folder and run `node create-user.js`. Follow the instructions.
+
+5. Run `npm start`
 
 That's it!
+
+
+## Testing environment
+
+1. For testing you have to create a database for testing. Sample SQL statement to do this:
+
+```sql
+CREATE USER 'bitstarterTest'@'localhost' IDENTIFIED BY  'password';
+
+GRANT USAGE ON * . * TO  'bitstarterTest'@'localhost' IDENTIFIED BY  'password' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
+
+GRANT ALL PRIVILEGES ON  `bitstarterTest` . * TO  'bitstarterTest'@'localhost';
+```
+
+2. Open a terminal and run `grunt`

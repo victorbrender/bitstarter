@@ -1,5 +1,5 @@
 var prompt = require('prompt');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var db = require('../database.js');
 
 // input data schema
@@ -47,9 +47,8 @@ prompt.start();
 prompt.get(schema, function (err, result) {
 
 	// check if the username exists
-	db.knex.select()
+	db('users')
 		.where('username', result.username)
-		.from('users')
 		.limit(1)
 		.then(function(results) {
 			if (results.length) {
@@ -60,22 +59,22 @@ prompt.get(schema, function (err, result) {
 
 	// bcrypt the password
 	var rounds = 1;
-	// var salt = bcrypt.genSaltSync(10);
 	bcrypt.genSalt(rounds, function(err, salt) {
-		bcrypt.hash(result.password, salt, function(err, hash) {
+		bcrypt.hash(result.password, salt, null/* progress callback */, function(err, hash) {
 			// store new user in db
-			db.knex('users').insert({
-				username: result.username,
-				email: result.email,
-				password: hash
-			}).then(function() {
-				// log new user data
-				console.log('New user created:');
-				console.log('  username: ' + result.username);
-				console.log('  email: ' + result.email);
-				console.log('  password hash: ' + hash);
-				process.exit(0);
-			}).catch(console.log);
+			db('users')
+				.insert({
+					username: result.username,
+					email: result.email,
+					password: hash
+				}).then(function() {
+					// log new user data
+					console.log('New user created:');
+					console.log('  username: ' + result.username);
+					console.log('  email: ' + result.email);
+					console.log('  password hash: ' + hash);
+					process.exit(0);
+				}).catch(console.log);
 		});
 	});
 });

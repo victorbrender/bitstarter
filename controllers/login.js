@@ -2,7 +2,7 @@
 
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var db = require('../database.js');
 var config = require('../config.js');
 var MySQLStore = require('express-mysql-session')(session);
@@ -34,8 +34,12 @@ module.exports = function(app) {
 	});
 
 	app.get('/login', function(req, res, next) {
+		if (req.isAuthenticated()) {
+			res.redirect('/');
+		} else {
+			res.render('login');
+		}
 
-		res.render('login');
 	});
 
 	app.post('/login', function(req, res) {
@@ -47,7 +51,7 @@ module.exports = function(app) {
 		// knex compares the information from the form
 		// with the information in the user table
 		// and login the user if it is right
-		db.knex('users')
+		db('users')
 			.where({username: usernameReq })
 				.select('password')
 				.then(function(result) {
@@ -61,8 +65,7 @@ module.exports = function(app) {
 						req.session.regenerate(function() {
 
 							req.session.user = {username: usernameReq};
-							var sessionUser= req.session.user.username;
-							res.send('Congratulations ' + sessionUser + '! You are logged!')
+							res.redirect('/')
 						})
 					} else {
 						// Wrong username/password.

@@ -1,8 +1,4 @@
 module.exports = function(grunt) {
-	grunt.loadNpmTasks("gruntify-eslint");
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.registerTask("default", ["eslint"]);
-
 	grunt.initConfig({
 		eslint: {
 			options: {
@@ -28,6 +24,34 @@ module.exports = function(grunt) {
 				'test/**/*.js',
 				'*.js'
 			]
+		},
+		mochaTest: {
+			test: {
+				options: {
+					reporter: 'spec'
+				},
+				src: ['test/**/*.js']
+			}
+		},
+		env : {
+			test : {
+				NODE_ENV : 'test',
+				BITSTARTER_HOST : '127.0.0.1',
+				BITSTARTER_PORT : 3306,
+				BITSTARTER_USER : 'bitstarterTest',
+				BITSTARTER_PASSWORD : 'password',
+				BITSTARTER_DATABASE : 'bitstarterTest'
+			}
 		}
 	});
+
+	grunt.loadNpmTasks('grunt-mocha-test');
+	grunt.loadNpmTasks("gruntify-eslint");
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-env');
+	grunt.registerTask('requireAPP', function(){
+		require('./index.js');
+	});
+	grunt.registerTask("test", ["env:test",'requireAPP', "mochaTest", "eslint"]);
+	grunt.registerTask("default", ["test"]);
 }

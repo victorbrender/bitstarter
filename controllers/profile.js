@@ -15,7 +15,7 @@ module.exports = function(app) {
 					res.send("We couldn't find a user with this email");
 				}
 
-				res.render('profile', {username : sessionUser, email:result[0].email});
+				res.render('profile', {email:result[0].email});
 			});
 	});
 
@@ -43,13 +43,11 @@ module.exports = function(app) {
 							.then(function (count) {
 								if (count == 1) {
 									res.render('profile', {
-										username: usernameReq, 
 										email:    emailReq,
 										msg:      'Congratulations - profile for ' + usernameReq + ' updated!'
 									});
 								} else {
-									res.render('profile', {
-										username: usernameReq, 
+									res.render('profile', { 
 										email:    emailReq,
 										msg:      'failed to update profile for ' + usernameReq 
 									});
@@ -57,7 +55,6 @@ module.exports = function(app) {
 							});
 					} else {
 						res.render('profile', {
-							username: usernameReq, 
 							email: emailReq,
 							msg: 'Wrong password'
 						});

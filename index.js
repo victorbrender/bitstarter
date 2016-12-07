@@ -6,6 +6,7 @@ var sessionStore = new MySQLStore(config.dbOptions);
 var exphbr = require('express-handlebars');
 var bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
+var setCurrentUser = require('./middleware/current_user');
 var app = express();
 
 app.engine('html', exphbr({
@@ -21,13 +22,14 @@ app.use(session({
 	saveUninitialized: true
 }));
 
+app.use(setCurrentUser);
+
 app.use(function(req, res, next) {
 
 	req.isAuthenticated = function() {
 		return !!req.session.user;
 	};
 
-	res.locals.username = req.session.user && req.session.user.username;
 	next();
 });
 
